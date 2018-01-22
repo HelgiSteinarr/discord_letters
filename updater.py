@@ -5,7 +5,6 @@ import urllib, urllib.request, urllib.error
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import QThread, pyqtSignal
-from time import sleep
 
 
 class UpdateWindow(QMainWindow):
@@ -32,6 +31,7 @@ class UpdateWindow(QMainWindow):
     def update_filename(self, filename):
         self.filename_label.setText(filename)
 
+
 class ThreadClass(QThread):
 
     update_progressbar = pyqtSignal(float)
@@ -47,22 +47,24 @@ class ThreadClass(QThread):
         dir_path = os.path.dirname(os.path.realpath(__file__))
         print(dir_path)
         connection = urllib.request.URLopener()
-        self.file_name = "test_file1"
-        connection.retrieve("http://helgisteinarr.com/discord_letters/testfile.txt",
+        self.file_name = "main.exe"
+        connection.retrieve("http://helgisteinarr.com/discord_letters/main.exe",
                             os.path.join(dir_path, "testfile.txt"), reporthook=self.status)
         self.status(1, 100, 100)
-        self.file_name = "test_file2"
-        connection.retrieve("http://helgisteinarr.com/discord_letters/testfile.txt",
+        self.file_name = "mainwindow.ui"
+        connection.retrieve("http://helgisteinarr.com/discord_letters/mainwindow.ui",
                             os.path.join(dir_path, "testfile.txt"), reporthook=self.status)
         self.status(1, 100, 100)
-        self.file_name = "test_file3"
-        connection.retrieve("http://helgisteinarr.com/discord_letters/testfile.txt",
+        self.file_name = "updatewindow.ui"
+        connection.retrieve("http://helgisteinarr.com/discord_letters/updatewindow.ui",
                             os.path.join(dir_path, "testfile.txt"), reporthook=self.status)
         self.status(1, 100, 100)
-        self.file_name = "test_file4"
-        connection.retrieve("http://helgisteinarr.com/discord_letters/testfile.txt",
+        self.file_name = "dl_logo.png"
+        connection.retrieve("http://helgisteinarr.com/discord_letters/dl_logo.png",
                             os.path.join(dir_path, "testfile.txt"), reporthook=self.status)
         self.status(1, 100, 100)
+        os.system("start main.exe")
+        sys.exit()
 
     def status(self, count, blockSize, totalSize):
         print(count)
