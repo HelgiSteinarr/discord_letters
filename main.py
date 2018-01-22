@@ -109,7 +109,7 @@ class MainWindow(QMainWindow):
         self.text_input.setText("")
 
     def update_button_pressed(self):
-        os.system("start updater.exe")
+        os.popen("start updater.py").read()
         sys.exit()
 
     def check_for_updates(self):
