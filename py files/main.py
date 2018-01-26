@@ -95,9 +95,7 @@ class MainWindow(QMainWindow):
         else:
             try:
                 command = 'echo ' + self.output_box.document().toPlainText() + ' | clip'
-                # os.system(command)
-                os.popen(command).read()
-                os.popen(command).read()
+                os.system(command)
                 self.copy_label.setText("Copied to clipboard")
                 self.copy_label.setStyleSheet("color: green;")
             except:
